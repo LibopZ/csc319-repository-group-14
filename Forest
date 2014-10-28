@@ -1,0 +1,42 @@
+public class Forest {
+
+    private int[][] forest;
+    private int size = 10;
+    
+    public Forest(){
+      createForest(size) ;
+      printForest();
+      
+      
+    }
+  
+    public void createForest(int size) {
+        forest = new int[size][size];
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+              
+                  if (i == forest.length / 2 && j == forest.length / 2) {               // identify burn point
+                    forest[i][j] = 2; 
+                  }
+                  
+                  else if (i == 0 || j == 0 || i == forest.length - 1 || j == forest.length - 1) {   // 0 = frame of forest
+                    forest[i][j] = 0;    
+                  } 
+                  
+                  else {
+                    forest[i][j] = 1;     //  1 = Tree 
+                }
+            }
+        }
+    }
+
+    public void printForest() {
+        for (int i = 0; i < forest.length; i++) {
+            for (int j = 0; j < forest[i].length; j++) {
+                System.out.print(forest[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+    
+}
