@@ -1,35 +1,53 @@
-public class Forest {
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-    private int[][] forest;
+package firesimulator;
+
+/**
+ *
+ * @author Student Lab
+ */
+public class Forest {
+ 
+
+    public int[][] forest;    
+    public boolean[][] check;
     private int size = 10;
     
     public Forest(){
-      createForest(size) ;
+      create(size) ;
       printForest();
+      System.out.println();
       
       
     }
-  
-    public void createForest(int size) {
+    
+    public void create(int size) {
         forest = new int[size][size];
+        check = new boolean[size][size];
         for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-              
-                  if (i == forest.length / 2 && j == forest.length / 2) {               // identify burn point
-                    forest[i][j] = 2; 
-                  }
-                  
-                  else if (i == 0 || j == 0 || i == forest.length - 1 || j == forest.length - 1) {   // 0 = frame of forest
+            for (int j = 0; j < size; j++) {                  
+             if (i == 0 || j == 0 || i == forest.length - 1 || j == forest.length - 1) {   // 0 = frame of forest
                     forest[i][j] = 0;    
-                  } 
-                  
-                  else {
-                    forest[i][j] = 1;     //  1 = Tree 
+                  }                   
+             else {
+                    forest[i][j] = 1;     //  1 = Tree
                 }
             }
         }
     }
 
+    public void resetCheck(){
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {                  
+             check[i][j] = false;
+            }
+        }
+    }
+    
     public void printForest() {
         for (int i = 0; i < forest.length; i++) {
             for (int j = 0; j < forest[i].length; j++) {
@@ -37,6 +55,8 @@ public class Forest {
             }
             System.out.println();
         }
+        System.out.println("---------------------------");
     }
     
+
 }
