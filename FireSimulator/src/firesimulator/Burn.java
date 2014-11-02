@@ -6,7 +6,7 @@
 
 package firesimulator;
 
-import java.util.ArrayList;
+
 
 /**
  *
