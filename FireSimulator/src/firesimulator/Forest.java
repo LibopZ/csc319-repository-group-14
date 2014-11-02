@@ -15,7 +15,7 @@ public class Forest {
 
     public int[][] forest;    
     public boolean[][] check;
-    private int size = 50;
+    private int size = 20;
     
     public Forest(){
       create(size) ;

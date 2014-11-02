@@ -15,7 +15,7 @@ public class SpreadFire {
       
        //Forest forest = new Forest();
        
-       Burn burn = new Burn(0.5);
+       Burn burn = new Burn(0.6);
      // burn.randomTwo();
         
    }

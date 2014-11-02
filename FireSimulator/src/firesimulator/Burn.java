@@ -20,7 +20,7 @@ public class Burn {
     private GUI gui;
     
     public Burn(double probBurning){
-        gui = new GUI();
+        //gui = new GUI();
       this.probBurning = probBurning;   
       start(forest.length/2,forest[0].length/2);
       //printF();
@@ -29,8 +29,8 @@ public class Burn {
       while(!finish()){
           search();
           f.resetCheck();
-          gui.drawSpreadFire(forest);
-        //  printF(); //เพื่อไม่ให้มันปริ้นออกมาตอนรัน
+         // gui.drawSpreadFire(forest);
+          printF(); //เพื่อไม่ให้มันปริ้นออกมาตอนรัน
       }
     }
       // จุดเผาไฟ เริ่มที่ตรงกลาง
