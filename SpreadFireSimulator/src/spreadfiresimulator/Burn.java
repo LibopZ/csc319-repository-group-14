@@ -1,20 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package spreadfiresimulator;
 
 /**
  *
- * @author StaroMoon
+ * @author csc319 GROUP # 14
  */
 public class Burn {
     
     DrawField field = Forest.field;
     boolean check[][] = new boolean[field.getNumTree()][field.getNumTree()];
     Jframe gui;
-    int addcnt,cnt,speed = 100;
+    int speed = 100;
     /*public Burn(double probBurning){
       this.probBurning = probBurning;   
       start(forest.length/2,forest[0].length/2);
@@ -34,7 +29,9 @@ public class Burn {
         forest[x][y] = 2;
     }*/
      
-    // method for search burning (2)
+    /*
+        
+    */
     public void search(){
         for(int x=0;x< field.getNumTree()-1;x++){
             for(int y=0; y< field.getNumTree()-1;y++){
@@ -63,25 +60,34 @@ public class Burn {
          if(field.eachtree[x-1][y].getState()==1 && random(gui.getProbfire()) == true && check[x-1][y]==false){
             field.eachtree[x-1][y].setState(2); check[x-1][y] = true;  
         }
-   }
-    // method to check if still have burning (2)
+    }
+    
+    /*
+        Check if still have burning tree
+    */
     public boolean finish(){
         for(int x=0;x<field.getNumTree();x++){
             for(int y=0; y<field.getNumTree();y++){
                 if(field.eachtree[x][y].getState()==2){
-                   return false; // still have 2
+                   return false; // still have burning tree
                 }
             }
         }return true; //dont have
     }
     
+    /*
+        Random probability
+    */
     public boolean random(double probB){
         double a = Math.random();
         if(a<probB){
             return true;
         }return false;
     }
-   
+    
+    /*
+        
+    */
     public void resetCheck(){
         for (int i = 1; i < check.length-1; i++) {
             for (int j = 1; j < check.length-1; j++) {                  
@@ -90,29 +96,23 @@ public class Burn {
         }
     }
     
+    /*
+        Make forest automatic burn
+    */
     public void run(){
-        try{
         while(!finish()){
                 step();
             }
-        }catch (Exception e){
              // printF(); เพื่อไม่ให้มันปริ้นออกมาตอนรัน
-        }
     }
     
+    /*
+        Make forest burn step by step
+    */
     public void step() {
         try {
             search();
             resetCheck();
-            /*if(finish() == true){
-                if(addcnt == 0){
-                addcnt++;
-                cnt++;
-                }else{
-                }
-            }else{
-            cnt++;
-            }*/
             field.update(field.eachtree);
             Thread.sleep(speed);
             } catch (Exception e) {
@@ -129,10 +129,16 @@ public class Burn {
    System.out.println("-------------------------------");
    }
 
+    /*
+        Set Jframe
+    */
     public void setGui(Jframe gui) {
         this.gui = gui;
     }
-
+    
+    /*
+        Set speed of automatic burn forest
+    */
     public void setSpeed(int speed) {
         this.speed = speed;
     }

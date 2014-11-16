@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package spreadfiresimulator;
 
 import java.awt.event.ActionListener;
@@ -18,7 +13,7 @@ import javax.swing.event.ChangeListener;
 
 /**
  *
- * @author StaroMoon
+ * @author csc319 GROUP # 14
  */
 public class Jframe extends javax.swing.JFrame {
     double probfire,probtree,probtreeburn,count = 1;;
@@ -26,10 +21,11 @@ public class Jframe extends javax.swing.JFrame {
     Forest forest;
     Burn b;
     EachTree[][] eachtree;
-    MessageBox box;
     Timer timer;
     boolean step = false;
     boolean mousemove = false;
+    ImageIcon imgmsgbox = new ImageIcon(getClass().getResource("/Image/msgboxicon.png"));
+    
     public Jframe() {
         initComponents();
         setTitle("FireSimulator BY GROUP 14");
@@ -110,21 +106,19 @@ public class Jframe extends javax.swing.JFrame {
                     for(int i = 10;i <= 100;i++){
                         if(value == i){
                             jLabel1.setText("Size : " + value+"*"+value);
-                            field.setSizecell((double)600/(double)value);
+                            field.setSizetree((double)600/(double)value);
                             field.setNumTree(value);
                             repaint();
                         }
                     }
                     field.setNumTree(value);
                     //add(forest);
-
                     field.repaint();
                     //System.out.println(value);
                     //JOptionPane.showMessageDialog(null, "Forest with"+ value*value + "Trees");
                 }
             }
         });
-        /**/
 
         jSlider2.setOpaque(false);
         getContentPane().add(jSlider2);
@@ -327,11 +321,11 @@ public class Jframe extends javax.swing.JFrame {
     }//GEN-LAST:event_RegrowMouseExited
 
     private void StartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StartMouseClicked
-        box = new MessageBox();
         Timeclass tc = new Timeclass(count,Start);
         timer = new Timer(100,tc);
         if(getProbfire() == 0){
-            JOptionPane.showMessageDialog(null, "Please insert probfire.");
+            JOptionPane.showMessageDialog(null, "Probfire not found. Insert number between 0-1.", "PROBFIRE NOT FOUND", JOptionPane.INFORMATION_MESSAGE, imgmsgbox);
+            //sageDialog(null, "Please insert probfire.");
         }else{
             Thread t = new Thread(){
             public void run(){
@@ -367,16 +361,19 @@ public class Jframe extends javax.swing.JFrame {
         timer = new Timer(100,tc);
         try{
             probfire = Double.parseDouble(textprobfire.getText());
+            if(textprobfire.getText() == ""){
+                JOptionPane.showMessageDialog(null, "Probfire not found. Insert number between 0-1.", "PROBFIRE NOT FOUND", JOptionPane.INFORMATION_MESSAGE, imgmsgbox);
+                //JOptionPane.showMessageDialog(null, "ProbFire : "+ textprobfire.getText());
+            }
             
             if(probfire > 1 || probfire < 0){
                 textprobfire.setText("");
-                JOptionPane.showMessageDialog(null, "Please insert only number between 0 and 1.");
-            }else{
-                //JOptionPane.showMessageDialog(null, "ProbFire : "+ textprobfire.getText());
+                JOptionPane.showMessageDialog(null, "Insert number between 0-1.", "INVALID AMOUNT OF NUBMER", JOptionPane.INFORMATION_MESSAGE, imgmsgbox);
             }
+            
         }catch(Exception e){
             textprobfire.setText("");
-            JOptionPane.showMessageDialog(null, "Please insert only number between 0 and 1.");
+            JOptionPane.showMessageDialog(null, "Invalid type of input. Only number between 0-1.", "INVALID TYPE OF INPUT", JOptionPane.INFORMATION_MESSAGE, imgmsgbox);
         }
         timer.start();
         SetProbFire.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/SetProbFire_press.png")));
@@ -447,17 +444,17 @@ public class Jframe extends javax.swing.JFrame {
             probtree = Double.parseDouble(textprobtree.getText());
             probtreeburn = Double.parseDouble(textprobtreeburn.getText());
             if(probtree < 0){
-                JOptionPane.showMessageDialog(null, "Please insert only number between 0 and 1. \n Now probtree = 0.0");
+                JOptionPane.showMessageDialog(null, "Probability can't be minus number. Now, probtree = 0.0", "INVALID AMOUNT OF NUBMER", JOptionPane.INFORMATION_MESSAGE, imgmsgbox);
                 textprobtree.setText("0.0");
             }else if(probtree > 1){
-                JOptionPane.showMessageDialog(null, "Please insert only number between 0 and 1. \n Now probtree = 1.0");
+                JOptionPane.showMessageDialog(null, "Probability can't be more than 1. Now, probtree = 1.0", "INVALID AMOUNT OF NUBMER", JOptionPane.INFORMATION_MESSAGE, imgmsgbox);
                 textprobtree.setText("1.0");
             }
             if(probtreeburn < 0){
-                JOptionPane.showMessageDialog(null, "Please insert only number between 0 and 1. \n Now probtreeburn = 0.0");
+                JOptionPane.showMessageDialog(null, "Probability can't be minus number. Now, probtreeburn = 0.0", "INVALID AMOUNT OF NUBMER", JOptionPane.INFORMATION_MESSAGE, imgmsgbox);
                 textprobtreeburn.setText("0.0");
             }else if(probtreeburn > 1){
-                JOptionPane.showMessageDialog(null, "Please insert only number between 0 and 1. \n Now probtreeburn = 1.0");
+                JOptionPane.showMessageDialog(null, "Probability can't be more than 1. Now, probtreeburn = 1.0", "INVALID AMOUNT OF NUBMER", JOptionPane.INFORMATION_MESSAGE, imgmsgbox);
                 textprobtreeburn.setText("1.0");
             }
             field.createtreefromprob();
@@ -465,7 +462,7 @@ public class Jframe extends javax.swing.JFrame {
         }catch(Exception e){
             textprobtree.setText("");
             textprobtreeburn.setText("");
-            JOptionPane.showMessageDialog(null, "Please insert only number between 0 and 1.");
+            JOptionPane.showMessageDialog(null, "Invalid type of input. Insert number between 0-1.", "INVALID TYPE OF INPUT", JOptionPane.INFORMATION_MESSAGE, imgmsgbox);
             field.reset();
             repaint();
         }

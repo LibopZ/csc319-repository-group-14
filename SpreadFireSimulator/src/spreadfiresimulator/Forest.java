@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package spreadfiresimulator;
 
 import javax.swing.JPanel;
 
 /**
  *
- * @author StaroMoon
+ * @author csc319 GROUP # 14
  */
 public class Forest extends JPanel{
     EachTree[][] eachtree;
@@ -24,7 +19,6 @@ public class Forest extends JPanel{
                 if (i == 0 || j == 0 || i == field.getNumTree() - 1 || j == field.getNumTree() - 1) {   // 0 = frame of forest
                     eachtree[i][j].setState(0);    
                 }
-                
                 if(i == field.getNumTree()/2 && j == field.getNumTree() / 2){
                     eachtree[i][j].setState(2);
                 }
