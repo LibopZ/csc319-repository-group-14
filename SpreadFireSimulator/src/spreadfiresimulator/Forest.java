@@ -10,6 +10,9 @@ public class Forest extends JPanel{
     EachTree[][] eachtree;
     static DrawField field;
     
+    /*
+        Constructor set state of each tree
+    */
     public Forest(DrawField field){
         this.field = field;
         eachtree = new EachTree[field.getNumTree()][field.getNumTree()];

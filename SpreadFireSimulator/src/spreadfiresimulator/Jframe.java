@@ -1,6 +1,8 @@
 package spreadfiresimulator;
 
+import java.awt.Desktop;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -79,9 +81,9 @@ public class Jframe extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1080, 800));
         getContentPane().setLayout(null);
         getContentPane().add(textprobfire);
         textprobfire.setBounds(880, 287, 85, 30);
@@ -96,6 +98,14 @@ public class Jframe extends javax.swing.JFrame {
         jSlider1.setPaintTicks(true);
         jSlider1.setPaintLabels(true);
         jSlider1.setOpaque(false);
+        jSlider1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jSlider1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jSlider1MouseExited(evt);
+            }
+        });
         getContentPane().add(jSlider1);
         jSlider1.setBounds(620, 520, 200, 50);
         jSlider1.addChangeListener(new ChangeListener() {
@@ -121,6 +131,14 @@ public class Jframe extends javax.swing.JFrame {
         });
 
         jSlider2.setOpaque(false);
+        jSlider2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jSlider2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jSlider2MouseExited(evt);
+            }
+        });
         getContentPane().add(jSlider2);
         jSlider2.setBounds(830, 520, 200, 26);
         jSlider2.addChangeListener(new ChangeListener() {
@@ -261,7 +279,7 @@ public class Jframe extends javax.swing.JFrame {
     jLabel7.setFont(new java.awt.Font("Tempus Sans ITC", 0, 20)); // NOI18N
     jLabel7.setText("Version 1.0");
     getContentPane().add(jLabel7);
-    jLabel7.setBounds(950, 590, 100, 30);
+    jLabel7.setBounds(950, 600, 100, 30);
 
     jLabel8.setFont(new java.awt.Font("Tempus Sans ITC", 0, 24)); // NOI18N
     jLabel8.setForeground(new java.awt.Color(0, 0, 153));
@@ -286,6 +304,25 @@ public class Jframe extends javax.swing.JFrame {
     jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Forest_bg.png"))); // NOI18N
     getContentPane().add(jLabel12);
     jLabel12.setBounds(730, 20, 310, 190);
+
+    jButton1.setBackground(new java.awt.Color(204, 255, 204));
+    jButton1.setFont(new java.awt.Font("Tempus Sans ITC", 0, 18)); // NOI18N
+    jButton1.setText("Help");
+    jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+            jButton1MouseEntered(evt);
+        }
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+            jButton1MouseExited(evt);
+        }
+    });
+    jButton1.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton1ActionPerformed(evt);
+        }
+    });
+    getContentPane().add(jButton1);
+    jButton1.setBounds(840, 600, 90, 30);
 
     pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -361,7 +398,7 @@ public class Jframe extends javax.swing.JFrame {
         timer = new Timer(100,tc);
         try{
             probfire = Double.parseDouble(textprobfire.getText());
-            if(textprobfire.getText() == ""){
+            if(textprobfire.getText().equals("")){
                 JOptionPane.showMessageDialog(null, "Probfire not found. Insert number between 0-1.", "PROBFIRE NOT FOUND", JOptionPane.INFORMATION_MESSAGE, imgmsgbox);
                 //JOptionPane.showMessageDialog(null, "ProbFire : "+ textprobfire.getText());
             }
@@ -482,6 +519,37 @@ public class Jframe extends javax.swing.JFrame {
        GrowNewForest.setText("GrowNewForest_default");
        GrowNewForest.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/GrowNewForest_default.png")));
     }//GEN-LAST:event_GrowNewForestMouseExited
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            Desktop.getDesktop().browse(new URL("https://github.com/LibopZ/csc319-repository-group-14/wiki/User-Manual").toURI());
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jSlider1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSlider1MouseEntered
+        jLabel2.setText("Slide to select density of tree in forest");
+    }//GEN-LAST:event_jSlider1MouseEntered
+
+    private void jSlider1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSlider1MouseExited
+        jLabel2.setText("");
+    }//GEN-LAST:event_jSlider1MouseExited
+
+    private void jSlider2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSlider2MouseEntered
+        jLabel2.setText("Slide to select speed of spread fire");
+    }//GEN-LAST:event_jSlider2MouseEntered
+
+    private void jSlider2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSlider2MouseExited
+        jLabel2.setText("");
+    }//GEN-LAST:event_jSlider2MouseExited
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+        jLabel2.setText("Click to open user manual");
+    }//GEN-LAST:event_jButton1MouseEntered
+
+    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+        jLabel2.setText("");
+    }//GEN-LAST:event_jButton1MouseExited
     
     private class Timeclass implements ActionListener{
         double counter;
@@ -551,6 +619,7 @@ public class Jframe extends javax.swing.JFrame {
     private javax.swing.JLabel SetProbFire;
     private javax.swing.JLabel Start;
     private javax.swing.JLabel autoplay;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

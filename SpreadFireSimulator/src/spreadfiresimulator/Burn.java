@@ -30,19 +30,22 @@ public class Burn {
     }*/
      
     /*
-        
+        Check tree if already burn then set to empty tree and probability to spread fire to other tree
     */
     public void search(){
         for(int x=0;x< field.getNumTree()-1;x++){
             for(int y=0; y< field.getNumTree()-1;y++){
                 if(field.eachtree[x][y].getState()==2 && check[x][y]==false){                    
-                    field.eachtree[x][y].setState(0);
+                   field.eachtree[x][y].setState(0);
                    spread(x,y); 
                 }
             }
         }
     }
     
+    /*
+        Check if it is a tree then check probability to spread fire to other tree
+    */
     public void spread(int x, int y){      
          //North
         if(field.eachtree[x][y-1].getState()==1 && random(gui.getProbfire()) == true && check[x][y-1]==false ){
@@ -86,7 +89,7 @@ public class Burn {
     }
     
     /*
-        
+        Set tree doesn't check to false
     */
     public void resetCheck(){
         for (int i = 1; i < check.length-1; i++) {
