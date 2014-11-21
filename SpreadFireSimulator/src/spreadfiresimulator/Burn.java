@@ -5,30 +5,11 @@ package spreadfiresimulator;
  * @author csc319 GROUP # 14
  */
 public class Burn {
-    
+    private int speed = 100;
     DrawField field = Forest.field;
     boolean check[][] = new boolean[field.getNumTree()][field.getNumTree()];
     Jframe gui;
-    int speed = 100;
-    /*public Burn(double probBurning){
-      this.probBurning = probBurning;   
-      start(forest.length/2,forest[0].length/2);
-      //printF();
-    }
     
-    public void drawSpreadFire(int[][] area){
-        add(new Draw(area));
-        setVisible(true);
-        try{Thread.sleep(50);}
-        catch(Exception e){};
-        
-    }
-    
-      // จุดเผาไฟ เริ่มที่ตรงกลาง
-    public void start(int x , int y){
-        forest[x][y] = 2;
-    }*/
-     
     /*
         Check tree if already burn then set to empty tree and probability to spread fire to other tree
     */
@@ -106,7 +87,6 @@ public class Burn {
         while(!finish()){
                 step();
             }
-             // printF(); เพื่อไม่ให้มันปริ้นออกมาตอนรัน
     }
     
     /*

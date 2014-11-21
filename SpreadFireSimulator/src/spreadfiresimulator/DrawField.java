@@ -84,8 +84,8 @@ public class DrawField extends JPanel{
                 if (i == 0 || j == 0 || i == numTree - 1 || j == numTree - 1) {   // 0 = frame of forest
                     eachtree[i][j].setState(0);    
                 }else{
-                    if(random(gui.probtree)){
-                        if(random(gui.probtreeburn)){
+                    if(random(gui.getProbtree())){
+                        if(random(gui.getProbtreeburn())){
                             eachtree[i][j].setState(2);
                         }else{
                             eachtree[i][j].setState(1);

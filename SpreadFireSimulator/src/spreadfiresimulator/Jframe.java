@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
 import javax.swing.JSlider;
 import javax.swing.Timer;
 import javax.swing.event.ChangeEvent;
@@ -18,15 +17,14 @@ import javax.swing.event.ChangeListener;
  * @author csc319 GROUP # 14
  */
 public class Jframe extends javax.swing.JFrame {
-    double probfire,probtree,probtreeburn,count = 1;;
-    static DrawField field;
+    private double probfire,probtree,probtreeburn,count = 1;
+    private boolean step = false;
+    private Timer timer;
+    private ImageIcon imgmsgbox = new ImageIcon(getClass().getResource("/Image/msgboxicon.png"));
+    DrawField field;
     Forest forest;
     Burn b;
     EachTree[][] eachtree;
-    Timer timer;
-    boolean step = false;
-    boolean mousemove = false;
-    ImageIcon imgmsgbox = new ImageIcon(getClass().getResource("/Image/msgboxicon.png"));
     
     public Jframe() {
         initComponents();
@@ -339,7 +337,6 @@ public class Jframe extends javax.swing.JFrame {
         textprobfire.setText("");
         textprobtree.setText("");
         textprobtreeburn.setText("");
-        mousemove = true;
         Regrow.setText("Regrow_over");
         Regrow.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Regrow_press.png")));
         repaint();
@@ -362,7 +359,6 @@ public class Jframe extends javax.swing.JFrame {
         timer = new Timer(100,tc);
         if(getProbfire() == 0){
             JOptionPane.showMessageDialog(null, "Probfire not found. Insert number between 0-1.", "PROBFIRE NOT FOUND", JOptionPane.INFORMATION_MESSAGE, imgmsgbox);
-            //sageDialog(null, "Please insert probfire.");
         }else{
             Thread t = new Thread(){
             public void run(){
@@ -400,7 +396,6 @@ public class Jframe extends javax.swing.JFrame {
             probfire = Double.parseDouble(textprobfire.getText());
             if(textprobfire.getText().equals("")){
                 JOptionPane.showMessageDialog(null, "Probfire not found. Insert number between 0-1.", "PROBFIRE NOT FOUND", JOptionPane.INFORMATION_MESSAGE, imgmsgbox);
-                //JOptionPane.showMessageDialog(null, "ProbFire : "+ textprobfire.getText());
             }
             
             if(probfire > 1 || probfire < 0){
@@ -433,7 +428,6 @@ public class Jframe extends javax.swing.JFrame {
         Timeclass tc = new Timeclass(count,autoplay);
         timer = new Timer(100,tc);
             if(autoplay.getText() == "Autoplayoff_over"){
-                //System.out.println(count);
                 timer.start();
                 autoplay.setText("Autoplayon_over");
                 autoplay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Autoplayoff_press.png")));
@@ -442,7 +436,6 @@ public class Jframe extends javax.swing.JFrame {
                 timer.start();
                 autoplay.setText("Autoplayoff_over");
                 autoplay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Autoplayon_press.png")));
-                //System.out.println(count);
                 step = false;
             }
     }//GEN-LAST:event_autoplayMouseClicked
@@ -458,7 +451,6 @@ public class Jframe extends javax.swing.JFrame {
             autoplay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Autoplayoff_over.png")));
         }
         else{
-            //autoplay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Autoplayoff_over.png")));
         }
     }//GEN-LAST:event_autoplayMouseEntered
 
@@ -554,27 +546,19 @@ public class Jframe extends javax.swing.JFrame {
     private class Timeclass implements ActionListener{
         double counter;
         JLabel label;
-        JRadioButton radio;
         
         public Timeclass(double counter,JLabel label){
             this.counter = counter;
             this.label = label;
-        }
-        public Timeclass(double counter,JRadioButton radio){
-            this.counter = counter;
-            this.radio = radio;
         }
             
         public void actionPerformed(java.awt.event.ActionEvent tc){
             counter --;
             if(counter >= 1){
                 label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/" +label.getText()+".png")));
-                //radio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/" +radio.getText()+"_press.png")));
             }else{
                 timer.stop();
                 label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/"+label.getText() +".png")));
-                //radio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/" +radio.getText()+"_press.png")));
-                //Toolkit.getDefaultToolkit().beep();
             }
         }
     }
